@@ -1,2 +1,7 @@
 .env
 venv
+.gitattributes
+.pythonlibs/
+.upm/
+.cache/
+
