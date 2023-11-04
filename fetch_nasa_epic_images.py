@@ -9,7 +9,6 @@ def fetch_nasa_epic_launch():
     response.raise_for_status()
     data_on_Earth_images_json = response.json()
     epic_example = 'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{image}.png?api_key={nasa_api_key}'
-    epic_example.raise_for_status()
     for el, data in enumerate(data_on_Earth_images_json):
         date = data_on_Earth_images_json[el]['date']
         date = datetime.datetime.fromisoformat(date)
