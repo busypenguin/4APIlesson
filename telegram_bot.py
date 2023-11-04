@@ -1,23 +1,34 @@
 import telegram
-from additional_settings import telegram_bot_token, chat_id
+from additional_settings import telegram_bot_token, tg_chat_id
 import os
 import argparse
 import random
 import time
 
 
-images = os.walk('images/')
-bot = telegram.Bot(token=telegram_bot_token)
-parser = argparse.ArgumentParser()
-parser.add_argument("--sec", help="Перерыв между отправкой картинок в секунду", type=int)
-args = parser.parse_args()
-sec = args.sec
-if sec is None:
-    sec = 14400
-while True:
-    for image in images:
-        path = image[0]
-        for pic in image[2]:
-            bot.send_photo(chat_id, photo=open(str(path+pic), 'rb'))
-            time.sleep(sec)
-        random.shuffle(image)
+def main():
+    images = os.walk('images/')
+    bot = telegram.Bot(token=telegram_bot_token)
+    parser = argparse.ArgumentParser(
+        description='Отрправляет картинки через бота в группу'
+    )
+    parser.add_argument("--sec", help="Перерыв между отправкой картинок в секунду", type=int, default=14400)
+    args = parser.parse_args()
+    sec = args.sec
+    while True:
+        for image in images:
+            path = image[0]
+            for pic in image[2]:
+                with open(f"{path}{pic}", 'rb') as photo:
+                    bot.send_photo(tg_chat_id,  photo)
+                    time.sleep(sec)
+            random.shuffle(image)
+
+
+if __name__ == '__main__':
+    main()
+
+
+with open('newfile.txt', 'w', encoding='utf-8') as g:
+    d = int(input())
+    print('1 / {} = {}'.format(d, 1 / d), file=g)
