@@ -15,9 +15,6 @@ def get_env_settings():
     return nasa_api_key, telegram_bot_token, tg_chat_id
 
 
-nasa_api_key, telegram_bot_token, tg_chat_id = get_env_settings()
-
-
 def download_image(url, folder_path):
     filename = url.split("/")[-1]
     response = requests.get(url)
@@ -32,3 +29,7 @@ def find_format(url):
     shorten_url = os.path.splitext(part_of_path_of_url[1])
     format_of_url = shorten_url[1]
     return format_of_url
+
+
+if __name__ == '__main__':
+    nasa_api_key, telegram_bot_token, tg_chat_id = get_env_settings()

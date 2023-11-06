@@ -5,15 +5,16 @@ from pathlib import Path
 
 
 def fetch_nasa_epic_launch():
-    response = requests.get('https://api.nasa.gov/EPIC/api/natural?api_key={nasa_api_key}'.format(nasa_api_key=nasa_api_key))
+    payload = {'?': '/'}
+    response = requests.get('https://api.nasa.gov/EPIC/api/natural?api_key={nasa_api_key}'.format(nasa_api_key=nasa_api_key), params=payload)
     response.raise_for_status()
-    data_on_Earth_images_json = response.json()
+    earth_images = response.json()
     epic_example = 'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{image}.png?api_key={nasa_api_key}'
-    for el, data in enumerate(data_on_Earth_images_json):
-        date = data_on_Earth_images_json[el]['date']
+    for image_number, data in enumerate(earth_images):
+        date = earth_images[image_number]['date']
         date = datetime.datetime.fromisoformat(date)
         date = date.strftime("%Y/%m/%d")
-        url = epic_example.format(date=date, image=data_on_Earth_images_json[el]['image'], nasa_api_key=nasa_api_key)
+        url = epic_example.format(date=date, image=earth_images[image_number]['image'], nasa_api_key=nasa_api_key)
         download_image(url, 'images/')
 
 
