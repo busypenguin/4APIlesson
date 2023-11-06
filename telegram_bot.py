@@ -27,8 +27,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-with open('newfile.txt', 'w', encoding='utf-8') as g:
-    d = int(input())
-    print('1 / {} = {}'.format(d, 1 / d), file=g)
