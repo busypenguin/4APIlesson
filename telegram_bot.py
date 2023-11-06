@@ -16,13 +16,13 @@ def main():
     args = parser.parse_args()
     sec = args.sec
     while True:
-        for image in images:
-            path = image[0]
-            for pic in image[2]:
+        for image_urls in images:
+            path = image_urls[0]
+            for pic in image_urls[2]:
                 with open(f"{path}{pic}", 'rb') as photo:
                     bot.send_photo(tg_chat_id,  photo)
                     time.sleep(sec)
-            random.shuffle(image)
+            random.shuffle(image_urls)
 
 
 if __name__ == '__main__':
