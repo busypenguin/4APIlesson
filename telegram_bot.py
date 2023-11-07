@@ -1,5 +1,5 @@
 import telegram
-from additional_settings import telegram_bot_token, tg_chat_id
+from utils import telegram_bot_token, tg_chat_id
 import os
 import argparse
 import random

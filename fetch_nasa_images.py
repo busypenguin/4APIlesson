@@ -1,18 +1,16 @@
 import requests
-from additional_settings import download_image, find_format, nasa_api_key
+from utils import download_image, find_format, nasa_api_key
 from pathlib import Path
 
 
 def fetch_nasa_last_launch():
-    payload = {'?': '/'}
-    number_of_images = 30
-    response = requests.get('https://api.nasa.gov/planetary/apod?api_key={nasa_api_key}&count={number_of_images}'.format(
-                                            nasa_api_key=nasa_api_key, number_of_images=number_of_images), params=payload)
+    images_number = 30
+    response = requests.get('https://api.nasa.gov/planetary/apod/api_key={nasa_api_key}&count={images_number}'.format(nasa_api_key=nasa_api_key, images_number=images_number))
     response.raise_for_status()
-    flights = response.json()
-    for flight in flights:
-        if find_format(flight['url']) == '.jpg':
-            download_image(flight['url'], 'images/')
+    launches = response.json()
+    for launch in launches:
+        if find_format(launch['url']) == '.jpg':
+            download_image(launch['url'], 'images/')
 
 
 def main():
