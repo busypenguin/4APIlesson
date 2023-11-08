@@ -5,12 +5,13 @@ from pathlib import Path
 
 
 def fetch_spacex_last_launch():
+    payload={}
     response = requests.get('https://api.spacexdata.com/v5/launches/{}'.format(launch_id))
     response.raise_for_status()
     launches = response.json()
     for launch in launches:
         picture = launch['links']['patch']['large']
-        download_image(picture, 'images/')
+        download_image(picture, 'images/', payload)
 
 
 if __name__ == '__main__':

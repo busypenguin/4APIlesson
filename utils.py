@@ -3,9 +3,9 @@ from urllib.parse import urlsplit
 import os
 
 
-def download_image(url, folder_path):
+def download_image(url, folder_path, payload):
     filename = url.split("/")[-1]
-    response = requests.get(url)
+    response = requests.get(url, params=payload)
     response.raise_for_status()
     with open(f'{folder_path}{filename}', "wb") as file:
         file.write(response.content)
