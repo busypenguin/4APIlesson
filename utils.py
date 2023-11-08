@@ -1,14 +1,6 @@
 import requests
 from urllib.parse import urlsplit
 import os
-from environs import Env
-
-
-env = Env()
-env.read_env()
-nasa_api_key = env.str('NASA_API_KEY')
-telegram_bot_token = env.str('TELEGRAM_BOT_TOKEN')
-tg_chat_id = env.str('TG_CHAT_ID')
 
 
 def download_image(url, folder_path):

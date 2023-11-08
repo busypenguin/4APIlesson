@@ -1,6 +1,7 @@
 import requests
-from utils import download_image, find_format, nasa_api_key
+from utils import download_image, find_format
 from pathlib import Path
+from environs import Env
 
 
 def fetch_nasa_last_launch():
@@ -13,10 +14,9 @@ def fetch_nasa_last_launch():
             download_image(launch['url'], 'images/')
 
 
-def main():
+if __name__ == '__main__':
+    env = Env()
+    env.read_env()
+    nasa_api_key = env.str('NASA_API_KEY')
     Path("images").mkdir(parents=True, exist_ok=True)
     fetch_nasa_last_launch()
-
-
-if __name__ == '__main__':
-    main()

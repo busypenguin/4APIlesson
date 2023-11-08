@@ -1,5 +1,5 @@
 import telegram
-from utils import telegram_bot_token, tg_chat_id
+from environs import Env
 import os
 import argparse
 import random
@@ -7,6 +7,10 @@ import time
 
 
 def main():
+    env = Env()
+    env.read_env()
+    telegram_bot_token = env.str('TELEGRAM_BOT_TOKEN')
+    tg_chat_id = env.str('TG_CHAT_ID')
     images = os.walk('images/')
     bot = telegram.Bot(token=telegram_bot_token)
     parser = argparse.ArgumentParser(
