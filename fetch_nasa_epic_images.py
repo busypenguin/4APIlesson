@@ -6,10 +6,10 @@ from environs import Env
 
 
 def fetch_nasa_epic_launch():
-    response = requests.get('https://api.nasa.gov/EPIC/api/natural/api_key={nasa_api_key}'.format(nasa_api_key=nasa_api_key))
+    response = requests.get('https://api.nasa.gov/EPIC/api/natural?api_key={nasa_api_key}'.format(nasa_api_key=nasa_api_key))
     response.raise_for_status()
     earth_images = response.json()
-    epic_example = 'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{image}.png/api_key={nasa_api_key}'
+    epic_example = 'https://api.nasa.gov/EPIC/archive/natural/{date}/png?{image}.png/api_key={nasa_api_key}'
     for image_number in earth_images:
         date = earth_images[image_number]['date']
         date = datetime.datetime.fromisoformat(date)
