@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 def fetch_spacex_last_launch():
-    payload={}
+    payload = {}
     response = requests.get('https://api.spacexdata.com/v5/launches/{}'.format(launch_id))
     response.raise_for_status()
     launches = response.json()
