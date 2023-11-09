@@ -4,7 +4,7 @@ from utils import download_image
 from pathlib import Path
 
 
-def fetch_spacex_last_launch():
+def fetch_spacex_last_launch(launch_id):
     payload = {}
     response = requests.get('https://api.spacexdata.com/v5/launches/{}'.format(launch_id))
     response.raise_for_status()
@@ -22,4 +22,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
     launch_id = args.launch_id
     Path("images").mkdir(parents=True, exist_ok=True)
-    fetch_spacex_last_launch()
+    fetch_spacex_last_launch(launch_id)
