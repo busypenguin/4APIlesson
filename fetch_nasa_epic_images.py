@@ -7,7 +7,7 @@ from environs import Env
 
 def fetch_nasa_epic_launch():
     payload = {'api_key': nasa_api_key}
-    response = requests.get('https://api.nasa.gov/EPIC/api/natural?api_key={nasa_api_key}', params=payload)
+    response = requests.get('https://api.nasa.gov/EPIC/api/natural', params=payload)
     response.raise_for_status()
     earth_images = response.json()
     response = requests.get('https://api.nasa.gov/planetary/apod', params=payload)
