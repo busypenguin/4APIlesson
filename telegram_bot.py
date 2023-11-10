@@ -25,7 +25,7 @@ def main():
             for pic in image_urls[2]:
                 with open(f"{path}{pic}", 'rb') as photo:
                     bot.send_photo(tg_chat_id,  photo)
-                    time.sleep(sec)
+                time.sleep(sec)
             random.shuffle(image_urls)
 
 
