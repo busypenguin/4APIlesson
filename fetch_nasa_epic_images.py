@@ -10,7 +10,6 @@ def fetch_nasa_epic_launch(nasa_api_key):
     response = requests.get('https://api.nasa.gov/EPIC/api/natural', params=payload)
     response.raise_for_status()
     earth_images = response.json()
-    response = requests.get('https://api.nasa.gov/planetary/apod', params=payload)
     epic_example = 'https://api.nasa.gov/EPIC/archive/natural/{date}/png/{image}.png'
     for image_number in earth_images:
         date = earth_images[image_number]['date']
